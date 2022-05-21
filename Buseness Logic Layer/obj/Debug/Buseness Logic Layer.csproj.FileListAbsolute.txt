@@ -1,0 +1,16 @@
+D:\Home_rent\Home_Rent\Buseness Logic Layer\bin\Debug\Buseness Logic Layer.dll
+D:\Home_rent\Home_Rent\Buseness Logic Layer\bin\Debug\Buseness Logic Layer.pdb
+D:\Home_rent\Home_Rent\Buseness Logic Layer\bin\Debug\Buseness Entity Layer.dll
+D:\Home_rent\Home_Rent\Buseness Logic Layer\bin\Debug\Data Entity Layer.dll
+D:\Home_rent\Home_Rent\Buseness Logic Layer\bin\Debug\EntityFramework.dll
+D:\Home_rent\Home_Rent\Buseness Logic Layer\bin\Debug\Buseness Entity Layer.pdb
+D:\Home_rent\Home_Rent\Buseness Logic Layer\bin\Debug\Data Entity Layer.pdb
+D:\Home_rent\Home_Rent\Buseness Logic Layer\bin\Debug\Data Entity Layer.dll.config
+D:\Home_rent\Home_Rent\Buseness Logic Layer\bin\Debug\EntityFramework.xml
+D:\Home_rent\Home_Rent\Buseness Logic Layer\obj\Debug\Buseness Logic Layer.csproj.AssemblyReference.cache
+D:\Home_rent\Home_Rent\Buseness Logic Layer\obj\Debug\Buseness Logic Layer.csproj.CoreCompileInputs.cache
+D:\Home_rent\Home_Rent\Buseness Logic Layer\obj\Debug\Buseness Logic Layer.csproj.CopyComplete
+D:\Home_rent\Home_Rent\Buseness Logic Layer\obj\Debug\Buseness Logic Layer.dll
+D:\Home_rent\Home_Rent\Buseness Logic Layer\obj\Debug\Buseness Logic Layer.pdb
+D:\Home_rent\Home_Rent\Buseness Logic Layer\bin\Debug\AutoMapper.dll
+D:\Home_rent\Home_Rent\Buseness Logic Layer\bin\Debug\AutoMapper.xml

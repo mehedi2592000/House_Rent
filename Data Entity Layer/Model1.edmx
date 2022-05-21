@@ -1,0 +1,565 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="House_RentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Month" Type="varchar" MaxLength="50" />
+          <Property Name="Total_cost" Type="int" />
+          <Property Name="Prevous_amount" Type="int" />
+          <Property Name="Total_amount" Type="int" />
+          <Property Name="Cost_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bills">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Month" Type="varchar" MaxLength="50" />
+          <Property Name="Home_rent" Type="int" />
+          <Property Name="Water_bill" Type="int" />
+          <Property Name="Dirty_bill" Type="int" />
+          <Property Name="Service_charge" Type="int" />
+          <Property Name="Gass_bill" Type="int" />
+          <Property Name="Other_bill" Type="int" />
+          <Property Name="Previous_bill" Type="int" />
+          <Property Name="Total_bill" Type="int" />
+          <Property Name="Submission" Type="int" />
+          <Property Name="Rest_of_bill" Type="int" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Tanat_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Caretakers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nid" Type="int" Nullable="false" />
+          <Property Name="Mobile" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Picture" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nid_picture" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Owner_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Costs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Month" Type="varchar" MaxLength="50" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Reason" Type="varchar" MaxLength="100" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="Owner_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Owners">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nid" Type="int" Nullable="false" />
+          <Property Name="Mobile" Type="int" Nullable="false" />
+          <Property Name="House_no" Type="int" Nullable="false" />
+          <Property Name="Road_no" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Jala" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Picture" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tanants">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Father_name" Type="varchar" MaxLength="50" />
+          <Property Name="Mother_name" Type="varchar" MaxLength="50" />
+          <Property Name="Company_name" Type="varchar" MaxLength="50" />
+          <Property Name="Nid_number" Type="int" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Starting_month" Type="varchar" MaxLength="50" />
+          <Property Name="Nid_pic" Type="varchar" MaxLength="50" />
+          <Property Name="Picture" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Care_id" Type="int" Nullable="false" />
+          <Property Name="Owner_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Account_Cost">
+          <End Role="Costs" Type="Self.Costs" Multiplicity="1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Costs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="Cost_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cost_House_owner">
+          <End Role="Owners" Type="Self.Owners" Multiplicity="1" />
+          <End Role="Costs" Type="Self.Costs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owners">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Costs">
+              <PropertyRef Name="Owner_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_House_Caretakers_House_owners">
+          <End Role="Owners" Type="Self.Owners" Multiplicity="1" />
+          <End Role="Caretakers" Type="Self.Caretakers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owners">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Caretakers">
+              <PropertyRef Name="Owner_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rent_monthly_bills_Tanants">
+          <End Role="Tanants" Type="Self.Tanants" Multiplicity="1" />
+          <End Role="Bills" Type="Self.Bills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tanants">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bills">
+              <PropertyRef Name="Tanat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tanants_House_Caretakers">
+          <End Role="Caretakers" Type="Self.Caretakers" Multiplicity="1" />
+          <End Role="Tanants" Type="Self.Tanants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Caretakers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tanants">
+              <PropertyRef Name="Care_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tanants_House_owners">
+          <End Role="Owners" Type="Self.Owners" Multiplicity="1" />
+          <End Role="Tanants" Type="Self.Tanants" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owners">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tanants">
+              <PropertyRef Name="Owner_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="House_RentModelStoreContainer">
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bills" EntityType="Self.Bills" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Caretakers" EntityType="Self.Caretakers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Costs" EntityType="Self.Costs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Owners" EntityType="Self.Owners" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tanants" EntityType="Self.Tanants" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Account_Cost" Association="Self.FK_Account_Cost">
+            <End Role="Costs" EntitySet="Costs" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cost_House_owner" Association="Self.FK_Cost_House_owner">
+            <End Role="Owners" EntitySet="Owners" />
+            <End Role="Costs" EntitySet="Costs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_House_Caretakers_House_owners" Association="Self.FK_House_Caretakers_House_owners">
+            <End Role="Owners" EntitySet="Owners" />
+            <End Role="Caretakers" EntitySet="Caretakers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rent_monthly_bills_Tanants" Association="Self.FK_Rent_monthly_bills_Tanants">
+            <End Role="Tanants" EntitySet="Tanants" />
+            <End Role="Bills" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tanants_House_Caretakers" Association="Self.FK_Tanants_House_Caretakers">
+            <End Role="Caretakers" EntitySet="Caretakers" />
+            <End Role="Tanants" EntitySet="Tanants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tanants_House_owners" Association="Self.FK_Tanants_House_owners">
+            <End Role="Owners" EntitySet="Owners" />
+            <End Role="Tanants" EntitySet="Tanants" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="House_RentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Month" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Total_cost" Type="Int32" />
+          <Property Name="Prevous_amount" Type="Int32" />
+          <Property Name="Total_amount" Type="Int32" />
+          <Property Name="Cost_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cost" Relationship="Self.FK_Account_Cost" FromRole="Accounts" ToRole="Costs" />
+        </EntityType>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Month" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Home_rent" Type="Int32" />
+          <Property Name="Water_bill" Type="Int32" />
+          <Property Name="Dirty_bill" Type="Int32" />
+          <Property Name="Service_charge" Type="Int32" />
+          <Property Name="Gass_bill" Type="Int32" />
+          <Property Name="Other_bill" Type="Int32" />
+          <Property Name="Previous_bill" Type="Int32" />
+          <Property Name="Total_bill" Type="Int32" />
+          <Property Name="Submission" Type="Int32" />
+          <Property Name="Rest_of_bill" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Tanat_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tanant" Relationship="Self.FK_Rent_monthly_bills_Tanants" FromRole="Bills" ToRole="Tanants" />
+        </EntityType>
+        <EntityType Name="Caretaker">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nid" Type="Int32" Nullable="false" />
+          <Property Name="Mobile" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Picture" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nid_picture" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Owner_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Owner" Relationship="Self.FK_House_Caretakers_House_owners" FromRole="Caretakers" ToRole="Owners" />
+          <NavigationProperty Name="Tanants" Relationship="Self.FK_Tanants_House_Caretakers" FromRole="Caretakers" ToRole="Tanants" />
+        </EntityType>
+        <EntityType Name="Cost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Month" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Reason" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="Owner_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Cost" FromRole="Costs" ToRole="Accounts" />
+          <NavigationProperty Name="Owner" Relationship="Self.FK_Cost_House_owner" FromRole="Costs" ToRole="Owners" />
+        </EntityType>
+        <EntityType Name="Owner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nid" Type="Int32" Nullable="false" />
+          <Property Name="Mobile" Type="Int32" Nullable="false" />
+          <Property Name="House_no" Type="Int32" Nullable="false" />
+          <Property Name="Road_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Jala" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Picture" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Caretakers" Relationship="Self.FK_House_Caretakers_House_owners" FromRole="Owners" ToRole="Caretakers" />
+          <NavigationProperty Name="Costs" Relationship="Self.FK_Cost_House_owner" FromRole="Owners" ToRole="Costs" />
+          <NavigationProperty Name="Tanants" Relationship="Self.FK_Tanants_House_owners" FromRole="Owners" ToRole="Tanants" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tanant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Father_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mother_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Company_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nid_number" Type="Int32" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Starting_month" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nid_pic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Picture" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Care_id" Type="Int32" Nullable="false" />
+          <Property Name="Owner_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Bills" Relationship="Self.FK_Rent_monthly_bills_Tanants" FromRole="Tanants" ToRole="Bills" />
+          <NavigationProperty Name="Caretaker" Relationship="Self.FK_Tanants_House_Caretakers" FromRole="Tanants" ToRole="Caretakers" />
+          <NavigationProperty Name="Owner" Relationship="Self.FK_Tanants_House_owners" FromRole="Tanants" ToRole="Owners" />
+        </EntityType>
+        <Association Name="FK_Account_Cost">
+          <End Role="Costs" Type="Self.Cost" Multiplicity="1" />
+          <End Role="Accounts" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Costs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="Cost_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rent_monthly_bills_Tanants">
+          <End Role="Tanants" Type="Self.Tanant" Multiplicity="1" />
+          <End Role="Bills" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tanants">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bills">
+              <PropertyRef Name="Tanat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_House_Caretakers_House_owners">
+          <End Role="Owners" Type="Self.Owner" Multiplicity="1" />
+          <End Role="Caretakers" Type="Self.Caretaker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owners">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Caretakers">
+              <PropertyRef Name="Owner_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tanants_House_Caretakers">
+          <End Role="Caretakers" Type="Self.Caretaker" Multiplicity="1" />
+          <End Role="Tanants" Type="Self.Tanant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Caretakers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tanants">
+              <PropertyRef Name="Care_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cost_House_owner">
+          <End Role="Owners" Type="Self.Owner" Multiplicity="1" />
+          <End Role="Costs" Type="Self.Cost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owners">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Costs">
+              <PropertyRef Name="Owner_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tanants_House_owners">
+          <End Role="Owners" Type="Self.Owner" Multiplicity="1" />
+          <End Role="Tanants" Type="Self.Tanant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owners">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tanants">
+              <PropertyRef Name="Owner_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="House_RentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Bills" EntityType="Self.Bill" />
+          <EntitySet Name="Caretakers" EntityType="Self.Caretaker" />
+          <EntitySet Name="Costs" EntityType="Self.Cost" />
+          <EntitySet Name="Owners" EntityType="Self.Owner" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Tanants" EntityType="Self.Tanant" />
+          <AssociationSet Name="FK_Account_Cost" Association="Self.FK_Account_Cost">
+            <End Role="Costs" EntitySet="Costs" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rent_monthly_bills_Tanants" Association="Self.FK_Rent_monthly_bills_Tanants">
+            <End Role="Tanants" EntitySet="Tanants" />
+            <End Role="Bills" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_House_Caretakers_House_owners" Association="Self.FK_House_Caretakers_House_owners">
+            <End Role="Owners" EntitySet="Owners" />
+            <End Role="Caretakers" EntitySet="Caretakers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tanants_House_Caretakers" Association="Self.FK_Tanants_House_Caretakers">
+            <End Role="Caretakers" EntitySet="Caretakers" />
+            <End Role="Tanants" EntitySet="Tanants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cost_House_owner" Association="Self.FK_Cost_House_owner">
+            <End Role="Owners" EntitySet="Owners" />
+            <End Role="Costs" EntitySet="Costs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tanants_House_owners" Association="Self.FK_Tanants_House_owners">
+            <End Role="Owners" EntitySet="Owners" />
+            <End Role="Tanants" EntitySet="Tanants" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="House_RentModelStoreContainer" CdmEntityContainer="House_RentEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="House_RentModel.Account">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Total_cost" ColumnName="Total_cost" />
+                <ScalarProperty Name="Prevous_amount" ColumnName="Prevous_amount" />
+                <ScalarProperty Name="Total_amount" ColumnName="Total_amount" />
+                <ScalarProperty Name="Cost_id" ColumnName="Cost_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bills">
+            <EntityTypeMapping TypeName="House_RentModel.Bill">
+              <MappingFragment StoreEntitySet="Bills">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Home_rent" ColumnName="Home_rent" />
+                <ScalarProperty Name="Water_bill" ColumnName="Water_bill" />
+                <ScalarProperty Name="Dirty_bill" ColumnName="Dirty_bill" />
+                <ScalarProperty Name="Service_charge" ColumnName="Service_charge" />
+                <ScalarProperty Name="Gass_bill" ColumnName="Gass_bill" />
+                <ScalarProperty Name="Other_bill" ColumnName="Other_bill" />
+                <ScalarProperty Name="Previous_bill" ColumnName="Previous_bill" />
+                <ScalarProperty Name="Total_bill" ColumnName="Total_bill" />
+                <ScalarProperty Name="Submission" ColumnName="Submission" />
+                <ScalarProperty Name="Rest_of_bill" ColumnName="Rest_of_bill" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Tanat_id" ColumnName="Tanat_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Caretakers">
+            <EntityTypeMapping TypeName="House_RentModel.Caretaker">
+              <MappingFragment StoreEntitySet="Caretakers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Nid" ColumnName="Nid" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Nid_picture" ColumnName="Nid_picture" />
+                <ScalarProperty Name="Owner_id" ColumnName="Owner_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Costs">
+            <EntityTypeMapping TypeName="House_RentModel.Cost">
+              <MappingFragment StoreEntitySet="Costs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Owner_id" ColumnName="Owner_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Owners">
+            <EntityTypeMapping TypeName="House_RentModel.Owner">
+              <MappingFragment StoreEntitySet="Owners">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Nid" ColumnName="Nid" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="House_no" ColumnName="House_no" />
+                <ScalarProperty Name="Road_no" ColumnName="Road_no" />
+                <ScalarProperty Name="Jala" ColumnName="Jala" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="House_RentModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tanants">
+            <EntityTypeMapping TypeName="House_RentModel.Tanant">
+              <MappingFragment StoreEntitySet="Tanants">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Father_name" ColumnName="Father_name" />
+                <ScalarProperty Name="Mother_name" ColumnName="Mother_name" />
+                <ScalarProperty Name="Company_name" ColumnName="Company_name" />
+                <ScalarProperty Name="Nid_number" ColumnName="Nid_number" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Starting_month" ColumnName="Starting_month" />
+                <ScalarProperty Name="Nid_pic" ColumnName="Nid_pic" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Care_id" ColumnName="Care_id" />
+                <ScalarProperty Name="Owner_id" ColumnName="Owner_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

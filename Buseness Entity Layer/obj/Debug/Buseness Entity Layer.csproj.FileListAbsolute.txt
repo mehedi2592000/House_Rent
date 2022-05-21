@@ -1,0 +1,6 @@
+D:\Home_rent\Home_Rent\Buseness Entity Layer\bin\Debug\Buseness Entity Layer.dll
+D:\Home_rent\Home_Rent\Buseness Entity Layer\bin\Debug\Buseness Entity Layer.pdb
+D:\Home_rent\Home_Rent\Buseness Entity Layer\obj\Debug\Buseness Entity Layer.csproj.AssemblyReference.cache
+D:\Home_rent\Home_Rent\Buseness Entity Layer\obj\Debug\Buseness Entity Layer.csproj.CoreCompileInputs.cache
+D:\Home_rent\Home_Rent\Buseness Entity Layer\obj\Debug\Buseness Entity Layer.dll
+D:\Home_rent\Home_Rent\Buseness Entity Layer\obj\Debug\Buseness Entity Layer.pdb
