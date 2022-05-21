@@ -26,7 +26,7 @@ namespace Data_Entity_Layer.AccessFactory
             return new CaretakerRepo(db);   
         }
 
-        public static IRepository<Cost,int>CoseDataAccess()
+        public static IRepository<Cost,int>CostDataAccess()
         {
             return new CostRepo(db);
         }

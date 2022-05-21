@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Buseness_Entity_Layer
 {
-    internal class BillModel
+    public class BillModel
     {
         public int Id { get; set; }
         public string Month { get; set; }

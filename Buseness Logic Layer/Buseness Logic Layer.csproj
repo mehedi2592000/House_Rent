@@ -46,7 +46,11 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="services\BillService.cs" />
+    <Compile Include="services\CaretakerService.cs" />
+    <Compile Include="services\CostService.cs" />
     <Compile Include="services\OwnerService.cs" />
+    <Compile Include="services\TanantService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Buseness Entity Layer\Buseness Entity Layer.csproj">
