@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\HouseBillController.cs" />
     <Compile Include="Controllers\HouseCaretakerController.cs" />
     <Compile Include="Controllers\HouseOwnerController.cs" />
     <Compile Include="Controllers\TenantController.cs" />
