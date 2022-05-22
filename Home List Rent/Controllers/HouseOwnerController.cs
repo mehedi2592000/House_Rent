@@ -13,10 +13,42 @@ namespace Home_List_Rent.Controllers
     {
         [Route("api/Owner/list")]
         [HttpGet]
-        public List<OwnerModel>Get()
+        public HttpResponseMessage Get()
         {
-            return OwnerService.GetAll();
+            return Request.CreateResponse(HttpStatusCode.OK, OwnerService.GetAll());
         }
 
+        [Route("api/Owner/list{id}")]
+        [HttpGet]
+        public HttpResponseMessage Get(int id)
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, OwnerService.GetId(id));
+        }
+        
+
+        [Route("api/Owner/edit")]
+        [HttpPost]
+        public HttpResponseMessage Edit(OwnerModel e)
+        {
+            bool data=OwnerService.Edit(e);
+            return Request.CreateResponse(data ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
+        }
+
+        [Route("api/Owner/add")]
+        [HttpPost]
+        public HttpResponseMessage AddOwnere(OwnerModel e)
+        {
+            bool data=OwnerService.AddOwner(e);
+            
+            return Request.CreateResponse(data ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
+        }
+
+        [Route("api/Owner/Delete/{id}")]
+        [HttpGet]
+        public HttpResponseMessage OwnerDelete(int id)
+        {
+            bool data = OwnerService.DeleteOwner(id);
+            return Request.CreateResponse(data ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
+        }
     }
 }
