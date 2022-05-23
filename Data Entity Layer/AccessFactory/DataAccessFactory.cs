@@ -41,6 +41,11 @@ namespace Data_Entity_Layer.AccessFactory
             return new TanantRepo(db);
         }
 
+        public static IRepository<Account, int> AccountDataAccess()
+        {
+            return new AccountRepo(db);
+        }
+
 
     }
 }
