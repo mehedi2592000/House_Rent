@@ -19,6 +19,7 @@ namespace Home_List_Rent
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            config.EnableCors();
         }
     }
 }

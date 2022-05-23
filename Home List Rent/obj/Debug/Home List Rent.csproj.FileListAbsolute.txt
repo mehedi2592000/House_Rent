@@ -76,3 +76,7 @@ D:\Home_rent\Home_Rent\Home List Rent\obj\Debug\Home List Rent.csproj.CoreCompil
 D:\Home_rent\Home_Rent\Home List Rent\obj\Debug\Home List Rent.csproj.CopyComplete
 D:\Home_rent\Home_Rent\Home List Rent\obj\Debug\Home List Rent.dll
 D:\Home_rent\Home_Rent\Home List Rent\obj\Debug\Home List Rent.pdb
+D:\Home_rent\Home_Rent\Home List Rent\bin\System.Web.Cors.dll
+D:\Home_rent\Home_Rent\Home List Rent\bin\System.Web.Http.Cors.dll
+D:\Home_rent\Home_Rent\Home List Rent\bin\System.Web.Http.Cors.xml
+D:\Home_rent\Home_Rent\Home List Rent\bin\tr\System.Web.Http.Cors.resources.dll

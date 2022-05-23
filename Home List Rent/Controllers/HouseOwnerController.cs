@@ -6,9 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Home_List_Rent.Controllers
 {
+    [EnableCors("*","*","*")]
     public class HouseOwnerController : ApiController
     {
         [Route("api/Owner/list")]
@@ -18,7 +20,7 @@ namespace Home_List_Rent.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, OwnerService.GetAll());
         }
 
-        [Route("api/Owner/list{id}")]
+        [Route("api/Owner/list/{id}")]
         [HttpGet]
         public HttpResponseMessage Get(int id)
         {
