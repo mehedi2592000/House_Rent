@@ -39,7 +39,7 @@ namespace Buseness_Logic_Layer.services
             }
         }
 
-        public static bool AddCost(TanantModel e)
+        public static bool AddCost(CostModel e)
         {
             var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<CostModel, Cost>())).Map<Cost>(e);
 
