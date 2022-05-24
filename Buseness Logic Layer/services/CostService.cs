@@ -67,5 +67,23 @@ namespace Buseness_Logic_Layer.services
                 return false;
             }
         }
+
+        public static List<CostModel> GetGroupbyCost()
+        {
+            
+            var results = from line in DataAccessFactory.CostDataAccess().Get()
+                          group line by line.Month into g
+                          select new CostModel
+                          {
+                              Month = g.First().Month,
+                            //  Amount = g.Sum(pc => pc.Amount),
+                             Amount=g.Where(pc=>pc.Owner_id==1).Sum(p=>p.Amount),
+
+                              
+                          };
+            
+            return results.ToList();
+                
+        }
     }
 }

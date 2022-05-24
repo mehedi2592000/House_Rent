@@ -52,5 +52,11 @@ namespace Home_List_Rent.Controllers
             bool data=CostService.DeleteCost(id);
             return Request.CreateResponse(data ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
         }
+        [Route("api/Cost/Listgroupby")]
+        [HttpGet]
+        public HttpResponseMessage Getgroupby()
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, CostService.GetGroupbyCost());
+        }
     }
 }
