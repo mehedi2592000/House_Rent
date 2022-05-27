@@ -40,7 +40,10 @@ namespace Home_List_Rent.Controllers
         [HttpPost]
         public HttpResponseMessage AddOwnere(OwnerModel e)
         {
-            bool data=OwnerService.AddOwner(e);
+            
+
+
+            bool data =OwnerService.AddOwner(e);
             
             return Request.CreateResponse(data ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
         }
@@ -51,6 +54,21 @@ namespace Home_List_Rent.Controllers
         {
             bool data = OwnerService.DeleteOwner(id);
             return Request.CreateResponse(data ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
+        }
+
+        [Route("api/Owner/Login")]
+        [HttpPost]
+
+        public HttpResponseMessage OwnerLogin(OwnerModel e)
+        {
+            int data=OwnerService.OwnerLogin(e);
+
+            if (data == 0)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, data);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, data);
         }
     }
 }

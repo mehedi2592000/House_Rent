@@ -26,6 +26,7 @@ namespace Buseness_Logic_Layer.services
 
         public static bool AddCaretaker(CaretakerModel e)
         {
+           //e.Owner_id=p;
             var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<CaretakerModel, Caretaker>())).Map<Caretaker>(e);
 
             try

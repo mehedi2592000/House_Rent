@@ -74,5 +74,23 @@ namespace Buseness_Logic_Layer.services
                 return false;
             }
         }
+
+        public static int OwnerLogin(OwnerModel e)
+        {
+            //var data= DataAccessFactory.OwnerDataAccess().Get().Where(f=>f.Username.Equals(e.Username) && f.Password.Equals(e.Password));
+
+            int sa = 0;
+
+             sa = (from f in GetAll()
+                      where (f.Username.Equals(e.Username) && f.Password.Equals(e.Password))
+                      select f.Id).FirstOrDefault();
+
+            if (sa!=0)
+            {
+                return sa;
+            }
+
+            return 0;
+        }
     }
 }

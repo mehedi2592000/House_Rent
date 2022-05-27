@@ -32,7 +32,11 @@ namespace Home_List_Rent.Controllers
         [HttpPost]
         public HttpResponseMessage AddCaretaker(CaretakerModel e)
         {
-            bool data=CaretakerService.AddCaretaker(e);
+           // var frr=Request.Headers.Authorization.ToString();
+
+            //int fr=Convert.ToInt32(frr);
+            //bool data=CaretakerService.AddCaretaker(e,fr);
+            bool data = CaretakerService.AddCaretaker(e);
             return Request.CreateResponse(data ? HttpStatusCode.OK:HttpStatusCode.BadRequest );
         }
 
