@@ -1,5 +1,12 @@
 {
-  "ExpandedNodes": [],
-  "SelectedNode": "\\Home_Rent.sln",
+  "ExpandedNodes": [
+    "",
+    "\\Buseness Logic Layer",
+    "\\Buseness Logic Layer\\services",
+    "\\Data Entity Layer",
+    "\\Home List Rent",
+    "\\Home List Rent\\Controllers"
+  ],
+  "SelectedNode": "\\Data Entity Layer",
   "PreviewInSolutionExplorer": false
 }

@@ -75,22 +75,24 @@ namespace Buseness_Logic_Layer.services
             }
         }
 
-        public static int OwnerLogin(OwnerModel e)
+        public static OwnerModel OwnerLogin(OwnerModel e)
         {
             //var data= DataAccessFactory.OwnerDataAccess().Get().Where(f=>f.Username.Equals(e.Username) && f.Password.Equals(e.Password));
 
-            int sa = 0;
+            
 
-             sa = (from f in GetAll()
-                      where (f.Username.Equals(e.Username) && f.Password.Equals(e.Password))
-                      select f.Id).FirstOrDefault();
+             var sa = (from f in DataAccessFactory.OwnerDataAccess().Get()
+                   where (f.Username.Equals(e.Username) && f.Password.Equals(e.Password))
+                      select f).FirstOrDefault();
+    
+            
+            
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Owner, OwnerModel>());
+            var mapper = new Mapper(config);
+            var data = mapper.Map<OwnerModel>(sa);
 
-            if (sa!=0)
-            {
-                return sa;
-            }
 
-            return 0;
+            return data;
         }
     }
 }

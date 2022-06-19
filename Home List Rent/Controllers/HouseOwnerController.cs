@@ -61,14 +61,9 @@ namespace Home_List_Rent.Controllers
 
         public HttpResponseMessage OwnerLogin(OwnerModel e)
         {
-            int data=OwnerService.OwnerLogin(e);
+            
 
-            if (data == 0)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, data);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.OK, data);
+            return Request.CreateResponse(HttpStatusCode.OK, OwnerService.OwnerLogin(e));
         }
     }
 }

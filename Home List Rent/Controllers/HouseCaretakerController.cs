@@ -32,12 +32,16 @@ namespace Home_List_Rent.Controllers
         [HttpPost]
         public HttpResponseMessage AddCaretaker(CaretakerModel e)
         {
-           // var frr=Request.Headers.Authorization.ToString();
+            //var frr=Request.Headers.Authorization.ToString();
 
-            //int fr=Convert.ToInt32(frr);
-            //bool data=CaretakerService.AddCaretaker(e,fr);
-            bool data = CaretakerService.AddCaretaker(e);
-            return Request.CreateResponse(data ? HttpStatusCode.OK:HttpStatusCode.BadRequest );
+             var fg=Request.Headers.GetValues("manu").SingleOrDefault().ToString();
+           // return Request.CreateResponse(HttpStatusCode.OK, fg);
+            // HttpContext.Response.Headers.Add("x-my-custom-header", "individual response");
+            // int fr=Convert.ToInt32(frr);
+            //bool data=CaretakerService.AddCaretaker(e,Id);
+            //bool data = CaretakerService.AddCaretaker(e);
+            //return Request.CreateResponse(data ? HttpStatusCode.OK:HttpStatusCode.BadRequest );
+            return Request.CreateResponse(HttpStatusCode.OK,fg);
         }
 
         [Route("api/Caretaker/Edit")]
